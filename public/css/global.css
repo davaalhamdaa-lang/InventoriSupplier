@@ -1,0 +1,700 @@
+/* ===================================================
+   MBG INVENTORY SYSTEM
+   Modern SaaS Dashboard UI
+=================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root{
+    /* Background */
+    --bg:#f4f7fb;
+    --surface:#ffffff;
+
+    /* Brand */
+    --primary:#2563eb;
+    --primary-hover:#1d4ed8;
+
+    --gradient:
+    linear-gradient(
+        135deg,
+        #2563eb 0%,
+        #3b82f6 50%,
+        #60a5fa 100%
+    );
+
+    /* Status */
+    --danger:#ef4444;
+    --success:#10b981;
+    --warning:#f59e0b;
+
+    --success-bg:#ecfdf5;
+    --warning-bg:#fffbeb;
+    --danger-bg:#fef2f2;
+
+    --success-border:#a7f3d0;
+    --warning-border:#fde68a;
+    --danger-border:#fecaca;
+
+    /* Typography */
+    --text:#0f172a;
+    --text-soft:#64748b;
+    --text-light:#94a3b8;
+
+    /* Border */
+    --border:#e2e8f0;
+
+    /* Sidebar */
+    --sidebar:#0f172a;
+    --sidebar-hover:#1e293b;
+
+    /* Shadow */
+    --shadow:
+        0 4px 6px rgba(15,23,42,.04),
+        0 10px 20px rgba(15,23,42,.06);
+
+    --shadow-lg:
+        0 10px 25px rgba(15,23,42,.08),
+        0 20px 40px rgba(15,23,42,.10);
+
+    --radius:20px;
+
+    --sidebar-width:280px;
+    --sidebar-collapse:88px;
+}
+
+/* ===================================================
+   RESET
+=================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+}
+
+a{
+    text-decoration:none;
+}
+
+ul{
+    list-style:none;
+}
+
+/* ===================================================
+   SIDEBAR
+=================================================== */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+
+    width:var(--sidebar-width);
+    height:100vh;
+
+    background:var(--sidebar);
+
+    display:flex;
+    flex-direction:column;
+
+    padding:24px 16px;
+
+    border-right:1px solid rgba(255,255,255,.05);
+
+    z-index:1000;
+
+    transition:.3s ease;
+}
+
+.sidebar.collapsed{
+    width:var(--sidebar-collapse);
+}
+
+/* ===================================================
+   BRAND
+=================================================== */
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    padding-bottom:28px;
+    margin-bottom:24px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.brand-logo{
+    width:44px;
+    height:44px;
+
+    border-radius:14px;
+
+    background:var(--gradient);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    flex-shrink:0;
+}
+
+.brand-logo svg{
+    width:24px;
+    height:24px;
+    fill:white;
+}
+
+.brand-content{
+    display:flex;
+    flex-direction:column;
+}
+
+.brand-content strong{
+    color:white;
+    font-size:15px;
+    font-weight:800;
+}
+
+.brand-content small{
+    color:#94a3b8;
+    font-size:12px;
+}
+
+.sidebar.collapsed .brand-content{
+    display:none;
+}
+
+/* ===================================================
+   MENU TITLE
+=================================================== */
+
+.menu-title{
+    color:#64748b;
+
+    font-size:11px;
+    font-weight:700;
+
+    text-transform:uppercase;
+    letter-spacing:1px;
+
+    margin:20px 0 12px 12px;
+}
+
+.sidebar.collapsed .menu-title{
+    display:none;
+}
+
+/* ===================================================
+   MENU
+=================================================== */
+
+.sidebar nav{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.sidebar a{
+    height:52px;
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    padding:0 16px;
+
+    border-radius:14px;
+
+    color:#94a3b8;
+
+    font-size:14px;
+    font-weight:600;
+
+    transition:.25s ease;
+}
+
+.sidebar a:hover{
+    background:rgba(255,255,255,.06);
+    color:white;
+}
+
+.sidebar a.active{
+    background:var(--gradient);
+    color:white;
+
+    box-shadow:
+    0 10px 25px rgba(37,99,235,.30);
+}
+
+.sidebar a svg{
+    width:20px;
+    height:20px;
+
+    stroke:currentColor;
+    stroke-width:2;
+    fill:none;
+
+    flex-shrink:0;
+}
+
+.sidebar.collapsed a span{
+    display:none;
+}
+
+/* ===================================================
+   LOGOUT
+=================================================== */
+
+.logout-wrapper{
+    margin-top:auto;
+}
+
+.logout-link{
+    color:var(--danger)!important;
+}
+
+/* ===================================================
+   MAIN CONTENT
+=================================================== */
+
+.main-content{
+    margin-left:var(--sidebar-width);
+
+    width:100%;
+
+    padding:24px 30px;
+
+    transition:.3s ease;
+}
+
+.main-content.expanded{
+    margin-left:var(--sidebar-collapse);
+}
+
+/* ===================================================
+   TOPBAR
+=================================================== */
+
+.topbar{
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:20px 24px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:24px;
+
+    box-shadow:var(--shadow);
+}
+
+.topbar-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.menu-toggle{
+    width:42px;
+    height:42px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#f8fafc;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.menu-toggle:hover{
+    background:#eef2ff;
+}
+
+.menu-toggle svg{
+    width:22px;
+    height:22px;
+
+    stroke:var(--text);
+    fill:none;
+    stroke-width:2;
+}
+
+.topbar h2{
+    font-size:24px;
+    font-weight:800;
+}
+
+.subtitle{
+    color:var(--text-soft);
+    font-size:13px;
+    margin-top:3px;
+}
+
+/* ===================================================
+   USER AVATAR
+=================================================== */
+
+.user-avatar{
+    width:44px;
+    height:44px;
+
+    border-radius:50%;
+
+    background:var(--gradient);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+    font-weight:700;
+}
+
+/* ===================================================
+   CARD
+=================================================== */
+
+.card{
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+
+    padding:24px;
+
+    box-shadow:var(--shadow);
+}
+
+.card-header{
+    margin-bottom:20px;
+}
+
+.card-title{
+    font-size:18px;
+    font-weight:700;
+}
+
+/* ===================================================
+   BUTTONS
+=================================================== */
+
+.btn{
+    border:none;
+
+    border-radius:14px;
+
+    padding:12px 20px;
+
+    font-size:14px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.btn-primary{
+    background:var(--gradient);
+    color:white;
+
+    box-shadow:
+    0 10px 25px rgba(37,99,235,.25);
+}
+
+.btn-danger{
+    background:var(--danger);
+    color:white;
+}
+
+.btn-success{
+    background:var(--success);
+    color:white;
+}
+
+.btn-warning{
+    background:var(--warning);
+    color:white;
+}
+
+/* ===================================================
+   FORMS
+=================================================== */
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+
+    margin-bottom:8px;
+
+    color:var(--text-soft);
+
+    font-size:13px;
+    font-weight:600;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+
+    padding:14px 16px;
+
+    border-radius:14px;
+
+    border:1px solid var(--border);
+
+    background:white;
+
+    color:var(--text);
+
+    font-size:14px;
+
+    outline:none;
+
+    transition:.25s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#60a5fa;
+
+    box-shadow:
+    0 0 0 4px rgba(96,165,250,.15);
+}
+
+textarea{
+    resize:vertical;
+}
+
+/* ===================================================
+   TABLE
+=================================================== */
+
+.table-container{
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#f8fafc;
+
+    padding:16px 20px;
+
+    text-align:left;
+
+    font-size:12px;
+    font-weight:700;
+
+    color:var(--text-soft);
+
+    text-transform:uppercase;
+
+    border-bottom:1px solid var(--border);
+}
+
+td{
+    padding:16px 20px;
+
+    border-bottom:1px solid #f1f5f9;
+
+    font-size:14px;
+}
+
+tbody tr:hover{
+    background:#f8fafc;
+}
+
+tbody tr:last-child td{
+    border-bottom:none;
+}
+
+/* ===================================================
+   BADGES
+=================================================== */
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    font-size:12px;
+    font-weight:700;
+}
+
+.badge-success{
+    background:var(--success-bg);
+    color:var(--success);
+    border:1px solid var(--success-border);
+}
+
+.badge-warning{
+    background:var(--warning-bg);
+    color:var(--warning);
+    border:1px solid var(--warning-border);
+}
+
+.badge-danger{
+    background:var(--danger-bg);
+    color:var(--danger);
+    border:1px solid var(--danger-border);
+}
+
+/* ===================================================
+   GRID
+=================================================== */
+
+.grid{
+    display:grid;
+    gap:20px;
+}
+
+.grid-2{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.grid-3{
+    grid-template-columns:repeat(3,1fr);
+}
+
+.grid-4{
+    grid-template-columns:repeat(4,1fr);
+}
+
+/* ===================================================
+   MOBILE OVERLAY
+=================================================== */
+
+.sidebar-overlay{
+    display:none;
+}
+
+/* ===================================================
+   RESPONSIVE
+=================================================== */
+
+@media(max-width:1200px){
+
+    .grid-4{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:992px){
+
+    .grid-3,
+    .grid-4{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .sidebar{
+        transform:translateX(-100%);
+    }
+
+    .sidebar.show{
+        transform:translateX(0);
+    }
+
+    .main-content{
+        margin-left:0;
+        padding:16px;
+    }
+
+    .topbar{
+        padding:16px;
+    }
+
+    .sidebar-overlay{
+        display:block;
+
+        position:fixed;
+        inset:0;
+
+        background:rgba(0,0,0,.4);
+
+        z-index:999;
+    }
+
+    .grid-2{
+        grid-template-columns:1fr;
+    }
+
+    .table-container{
+        overflow-x:auto;
+    }
+
+}
+
+@media(max-width:576px){
+
+    .topbar h2{
+        font-size:18px;
+    }
+
+    .card{
+        padding:18px;
+    }
+
+    .btn{
+        width:100%;
+        justify-content:center;
+    }
+
+}
